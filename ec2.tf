@@ -12,6 +12,7 @@ resource "aws_instance" "prometheus" {
   ami                  = data.aws_ami.amazon_linux.id
   instance_type        = var.instance_type
   iam_instance_profile = aws_iam_instance_profile.ec2_profile.id
+  key_name = "my-aws-key-pair"
 
   user_data = <<-EOL
     #!/bin/bash

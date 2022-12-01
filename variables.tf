@@ -25,5 +25,5 @@ variable "instance_type" {
 
 variable "repository" {
   description = "Repositório do IAC"
-  default     = "https://www.github.com/"
+  default     = "https://github.com/visepol/prometheus-tf"
 }
