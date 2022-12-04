@@ -1,0 +1,23 @@
+- name: "AWS - Run prometheus"
+  hosts: all
+  become: yes
+  tasks:
+    - name: Copy prometheus config to remote machine
+      copy:
+        src: ./prometheus.yml
+        dest: /home/ec2-user/prometheus.yml
+
+    - name: Ensure prometheus container is running
+      docker_container:
+        name: prometheus
+        image: prom/prometheus
+        network_mode: host
+        volumes: 
+         - /home/ec2-user/prometheus.yml:/etc/prometheus/prometheus.yml
+
+    - name: Ensure blackbox exporter container is running
+      docker_container:
+        name: blackbox
+        image: prom/blackbox-exporter
+        ports:
+          - 9115:9115

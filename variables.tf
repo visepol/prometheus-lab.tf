@@ -27,3 +27,8 @@ variable "repository" {
   description = "Repositório do IAC"
   default     = "https://github.com/visepol/prometheus-tf"
 }
+
+variable "key_pem" {
+  description = "Chave SSH privada para deploy"
+  default     = "./deployer.pem"
+}
